@@ -45,7 +45,7 @@ def testMotor(mtr, direction):
     print("testing " + mtr + " motor in " + direction + " direction ... ", end="")
     runMotor(mtr, '51', direction)  # 50 steps hits a limit, 51 trips overtravel from maxnet
 
-    ser.timeout = 10
+    ser.timeout = 2
     res = str(ser.readline())[3:-3]
 
     if res == limit_flag:
@@ -64,9 +64,9 @@ if len(sys.argv) < 4:
     printUsage()
     exit()
 
-print("connecting...")
-ser = serial.Serial(sys.argv[1], 115200, timeout=10)
-print("...done.")
+#print("connecting...")
+ser = serial.Serial(sys.argv[1], 115200, timeout=2)
+#print("...done.")
 maxnet = {}
 writeToPort('wy')
 line = readFromPort();
@@ -80,7 +80,7 @@ line = line.split(", ")
 
 maxnet['name'] = str(line[0].split(' ')[0])
 
-if maxnet['name'] == 'MAXXn-5000':
+if maxnet['name'] != 'MAXn-5000':
     print("wrong port")
     quit()
 
@@ -90,24 +90,19 @@ maxnet['firmware'] = line[2]
 writeToPort('#NM?')
 maxnet['mac address'] = readFromPort()[1:]
 
-print("setting back to factory defaults...")
+
 writeToPort('RDF\n')    # factory defaults
 writeToPort('APP\n')    # save to flash
-print("...done.")
 
-print("configuring motor...")
 configMotor(sys.argv[3])
-print('...done.')
 
 
 if str(sys.argv[2]).upper() == 'MTR':
-    print("beginning tests...")
     testMotor(sys.argv[3].upper(), '+')
 
     time.sleep(1)
 
     testMotor(sys.argv[3].upper(), '-')
-    print("...done.")
 else:
     printUsage()
     exit()
