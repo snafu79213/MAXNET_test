@@ -90,9 +90,10 @@ maxnet['firmware'] = line[2]
 writeToPort('#NM?')
 maxnet['mac address'] = readFromPort()[1:]
 
-
 writeToPort('RDF\n')    # factory defaults
 writeToPort('APP\n')    # save to flash
+
+
 
 configMotor(sys.argv[3])
 
@@ -103,6 +104,10 @@ if str(sys.argv[2]).upper() == 'MTR':
     time.sleep(1)
 
     testMotor(sys.argv[3].upper(), '-')
+elif str(sys.argv[2].upper() == 'ENC'):
+    print("ENC")
+elif str(sys.argv[2].upper() == 'AUX'):
+    print("AUX")
 else:
     printUsage()
     exit()
