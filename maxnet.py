@@ -154,8 +154,8 @@ if maxnet['name'] != 'MAXn-5000':
     print("check port")
     quit()
 
-maxnet['serial number'] = line[0].split(":")[1]
-maxnet['firmware'] = line[2]
+maxnet['firmware'] = line[0].split(":")[1]
+maxnet['serial number'] = line[2]
 
 writeToPort('#NM?')
 maxnet['mac address'] = readFromPort()[1:]
@@ -206,6 +206,17 @@ elif str(sys.argv[2]).upper() == 'AUX':
         print("\t... auxillary passed")
     else:
         print("\t... auxillary failed")
+
+elif str(sys.argv[1]).upper() == 'INFO':
+    if str(sys.argv[2]).upper() == 'SN':
+        print(maxnet['serial number'])
+
+    elif str(sys.argv[2]).upper() == 'MAC':
+        print(maxnet['mac address'])
+
+    elif str(sys.argv[2]).upper() == 'FW':
+        print(maxnet('firmware'))
+
 else:
     printUsage()
     exit()
