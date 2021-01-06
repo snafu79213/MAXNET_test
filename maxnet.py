@@ -205,17 +205,22 @@ elif str(sys.argv[2]).upper() == 'AUX':
     if testAUX(sys.argv[3].upper()) is True:
         print("\t... auxillary passed")
     else:
-        print("\t... auxillary failed")
+        print("\t... not implemented")
 
-elif str(sys.argv[1]).upper() == 'INFO':
-    if str(sys.argv[2]).upper() == 'SN':
+elif str(sys.argv[2]).upper() == 'INFO':
+    if str(sys.argv[3]).upper() == 'SN':
         print(maxnet['serial number'])
 
-    elif str(sys.argv[2]).upper() == 'MAC':
+    elif str(sys.argv[3]).upper() == 'MAC':
         print(maxnet['mac address'])
 
-    elif str(sys.argv[2]).upper() == 'FW':
-        print(maxnet('firmware'))
+    elif str(sys.argv[3]).upper() == 'FW':
+        print(maxnet['firmware'])
+
+    else:
+        printUsage()
+
+    exit()
 
 else:
     printUsage()
