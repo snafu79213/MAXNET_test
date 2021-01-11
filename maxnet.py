@@ -106,6 +106,7 @@ def testAUX(aux):
         return False
 
     if aux == 'Z':
+        print("not implemented")
         return False
 
     if aux == 'T':
@@ -117,7 +118,7 @@ def testAUX(aux):
             return True
         return False
 
-    if aux == 'T':
+    if aux == 'U':
         time.sleep(1)
         writeToPort('BX\n')
         time.sleep(1)
@@ -218,7 +219,7 @@ elif str(sys.argv[2]).upper() == 'AUX':
     if testAUX(sys.argv[3].upper()) is True:
         print("\t... auxillary passed")
     else:
-        print("\t... not implemented")
+        print("\t... auxillary failed")
 
 elif str(sys.argv[2]).upper() == 'INFO':
     if str(sys.argv[3]).upper() == 'SN':
