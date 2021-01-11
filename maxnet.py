@@ -106,12 +106,23 @@ def testAUX(aux):
         return False
 
     if aux == 'Z':
-        return True
+        return False
 
-    if aux == 'T' or aux == 'U':
+    if aux == 'T':
+        time.sleep(1)
         writeToPort('BX\n')
+        time.sleep(1)
         a = readFromPort()
-        if a != 'ff':
+        if a == 'ef':
+            return True
+        return False
+
+    if aux == 'T':
+        time.sleep(1)
+        writeToPort('BX\n')
+        time.sleep(1)
+        a = readFromPort()
+        if a == 'bf':
             return True
         return False
     return False
