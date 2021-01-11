@@ -98,9 +98,11 @@ def testAUX(aux):
             return False
 
         b = float(a)
-        if 2 < b < 3:       # the masxnet analog input draws > 250mA for some reason why it draws so much.
+        if 2 < b < 5:       # the masxnet analog input draws > 250mA sometimes for some reason, why does it draw so much.
             writeToPort('BL0\n')
-            return True     # the controller has a hard time with keeping the voltage up. I should look into this.
+            time.sleep(100);
+            writeToPort('BH0\n');
+            return True
         return False
 
     if aux == 'Z':
