@@ -163,7 +163,7 @@ maxnet['mac address'] = readFromPort()[1:]
 writeToPort('RDF\n')  # factory defaults
 writeToPort('APP\n')  # save to flash
 
-writeToPort('BDA7\n')   # 'set 1010 0111' '1' is output, '0' is input pin 4 on rj45  always output high
+writeToPort('BDA7\n')   # 'set 1010 0111' '1' is output, '0' is input, pin 4 on rj45 always output high
 writeToPort('BH0\n')
 writeToPort('BH1\n')
 writeToPort('BH2\n')
