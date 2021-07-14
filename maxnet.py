@@ -7,7 +7,6 @@ import time
 def writeToPort(s):
     ser.write(bytes('\n' + s, 'utf-8'))
 
-
 def readFromPort():
     return str(ser.readline())[2:-3]
 
